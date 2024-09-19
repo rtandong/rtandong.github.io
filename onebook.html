@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Book Details </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- CSS in the <style> tag -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .book {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .book img {
+            max-width: 150px;
+            margin-right: 20px;
+        }
+        .details {
+            display: flex;
+        }
+        .info {
+            display: block;
+        }
+       
+    </style>
+</head>
+<body>
+    <h1>Book Information</h1>
+    <div class="book" id="book-details">
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // The JSON data
+            const bookData = {
+                "kind": "books#volume",
+                "id": "Wfan6L9RGgYC",
+                "etag": "iipFYcts7n0",
+                "selfLink": "https://www.googleapis.com/books/v1/volumes/Wfan6L9RGgYC",
+                "volumeInfo": {
+                    "title": "The Modern Web",
+                    "subtitle": "Multi-device Web Development with HTML5, CSS3, and JavaScript",
+                    "authors": ["Peter Gasston"],
+                    "publisher": "No Starch Press",
+                    "publishedDate": "2013",
+                    "description": "<p><b>A Guide to Modern Web Development</b></p>",
+                    "industryIdentifiers": [
+                        { "type": "ISBN_10", "identifier": "1593274874" },
+                        { "type": "ISBN_13", "identifier": "9781593274870" }
+                    ],
+                    "pageCount": 264,
+                    "categories": [
+                        "Computers / Web / Design",
+                        "Computers / Software Development & Engineering / General"
+                    ],
+                    "averageRating": 5,
+                    "ratingsCount": 2,
+                    "imageLinks": {
+                        "thumbnail": "http://books.google.com/books/content?id=Wfan6L9RGgYC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72SAlIA3QzIPZGrBxHmotK7HLumA3hQY5nCD-_eLiDKEp0qZUrS0Mo3f0iodpuADoJSBzdJHYNq1U-bCkb1eR-lpLmhqOyIQ1KxKd_cTc6fleh1xmJYsWv8hzb0t19p3T3FBaUF&source=gbs_api"
+                    }
+                }
+            };
+
+            let bookHTML = `
+                <div class="details">
+                    <img src="${bookData.volumeInfo.imageLinks.thumbnail}" alt="${bookData.volumeInfo.title} Thumbnail">
+                    <div class="info">
+                        <h1>${bookData.volumeInfo.title}</h1>
+                        <h2>${bookData.volumeInfo.subtitle}</h2>
+                        <p><strong>Author:</strong> ${bookData.volumeInfo.authors.join(', ')}</p>
+                        <p><strong>Publisher:</strong> ${bookData.volumeInfo.publisher} (${bookData.volumeInfo.publishedDate})</p>
+                        <p><strong>ISBN:</strong> ${bookData.volumeInfo.industryIdentifiers.map(id => `${id.type}: ${id.identifier}`).join(', ')}</p>
+                        <p><strong>Page Count:</strong> ${bookData.volumeInfo.pageCount}</p>
+                        <p><strong>Categories:</strong> ${bookData.volumeInfo.categories.join(', ')}</p>
+                        <p><strong>Average Rating:</strong> ${bookData.volumeInfo.averageRating} (${bookData.volumeInfo.ratingsCount} ratings)</p>
+                    </div>
+                </div>
+                <p>${bookData.volumeInfo.description}</p>
+            `;
+            $('#book-details').html(bookHTML);
+        });
+    </script>
+</body>
+</html>

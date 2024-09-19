@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Search Results</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .book {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .book img {
+            max-width: 150px;
+            margin-right: 20px;
+        }
+        .details {
+            display: flex;
+        }
+        .info {
+            display: block;
+        }
+    
+    </style>
+</head>
+<body> 
+    <div id="books"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Getting the JSON data
+            $.getJSON('https://www.googleapis.com/books/v1/volumes?q=modern%20web', function(data) {
+                let booksHTML = '';
+                $.each(data.items, function(index, item) {
+                    const book = item.volumeInfo;
+                    booksHTML += `
+                        <div class="book">
+                            <h2>${book.title}</h2>
+                            <p><strong>Author(s):</strong> ${book.authors ? book.authors.join(', ') : 'N/A'}</p>
+                            <p><strong>Published Date:</strong> ${book.publishedDate || 'N/A'}</p>
+                            <p><strong>Description:</strong> ${book.description || 'No description available'}</p>
+                            <img src="${book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/100x150'}" alt="${book.title}">
+                        </div>
+                    `;
+                });
+                $('#books').html(booksHTML);
+            });
+        });
+    </script>
+</body>
+</html>
