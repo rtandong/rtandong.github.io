@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    width: calc(100% - 120px);
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+}
+
+#results, #bookshelf {
+    margin-top: 20px;
+}
+
+.book {
+    display: inline-block;
+    width: 150px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#pagination {
+    margin-top: 20px;
+}
+
+.page-link {
+    margin: 0 5px;
+    cursor: pointer;
+    color: blue;
+}
+
+#bookDetails {
+    margin-top: 20px;
+}

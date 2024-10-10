@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="booksearch.html">Home</a></li>
+                <li><a href="bookshelf.html">My Bookshelf</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Book Search</h1>
+        
+        <section id="search">
+            <input type="text" id="searchTerm" placeholder="Enter search term" aria-label="Search term" />
+            <button onclick="searchBooks()" aria-label="Search">Search</button>
+        </section>
+
+        <section id="results">
+            <ul id="bookList"></ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
